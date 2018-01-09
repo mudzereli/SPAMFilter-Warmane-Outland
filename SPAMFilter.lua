@@ -169,6 +169,16 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				or msg:match("Ϣ")
 				or msg:match("ᘺ")
 				or msg:match("ա")
+				or msg:match("ɰ")
+				or msg:match("պ")
+				or msg:match("ɯ")
+				or msg:match("Щ")
+				or msg:match("ա")
+				or msg:match("ш")
+				or msg:match("ᶭ")
+				or msg:match("щ")
+				or msg:match("౻")
+				or msg:match("ᵚ")
 				or msg:match("ய")
 				or msg:match("ധ")
 				or msg:match("Ä")
@@ -192,6 +202,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				or msg:match("Dimensius the All%-Devouring")
 				or msg:match("Battle of the Crimson Watch")
 				or msg:match("Gurok the Usurper")
+				or msg:match("Trial of the Naaru")
 				or msg:match("Zuluhead the Whacked")
 				or msg:match("Deathblow to the Legion")) then
 				badMSG = true
@@ -287,7 +298,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		if (badMSG) then
 			filteredMessageCount = filteredMessageCount + 1
 			if (verbose) then
-				DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r "..cRed..badMSGType.."|r SPAM " .. msg)
+				DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r "..cRed..badMSGType.."|r SPAM ".. msg)
 			end
 			if(GetTime() - lastSpamTime >= minSecondsBetweenSpam) then
 				DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r Blocked "..cRed..filteredMessageCount.."|r SPAM messages so far this session...")
