@@ -61,8 +61,8 @@ SlashCmdList["SPAMFILTER"] = function(msg)
 		msg = "quest"
 		spamBlockQuests = not spamBlockQuests
 		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r ".. msg:upper() .." SPAM filtering "..EnabledBoolean(spamBlockQuests))
-	elseif msg == "meme" or msg == "m" then
-		msg = "meme"
+	elseif msg == "lang" or msg == "lng" or msg == "lg" then
+		msg = "lang"
 		spamBlockMemes = not spamBlockMemes
 		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r ".. msg:upper() .." SPAM filtering "..EnabledBoolean(spamBlockMemes))
 	elseif msg == "low" or msg == "l" then
@@ -84,7 +84,7 @@ SlashCmdList["SPAMFILTER"] = function(msg)
 		DEFAULT_CHAT_FRAME:AddMessage("("..cRed..filteredMessageCount.."|r) |r"..cOrange.."/sf blocked|r:               Show total # of blocked messages|r")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(filterSPAM).."] |r"..cOrange.."/sf toggle|r:         toggle entire SPAM filtering engine ON/OFF.")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(verbose).."] |r"..cOrange.."/sf verbose|r:     toggle displaying of filtered messages.")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockMemes).."] "..cOrange.."/sf meme|r:     toggle MEME filtering. ("..cRed..filteredCountMemes.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockMemes).."] "..cOrange.."/sf lang|r:       toggle LANGUAGE filtering. ("..cRed..filteredCountMemes.."|r)")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockPVP).."] "..cOrange.."/sf pvp|r:         toggle PVP filtering. ("..cRed..filteredCountPVP.."|r)")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockTrade).."] "..cOrange.."/sf trade|r:      toggle TRADE filtering. ("..cRed..filteredCountTrade.."|r)")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockGuild).."] "..cOrange.."/sf guild|r:       toggle GUILD filtering. ("..cRed..filteredCountGuild.."|r)")
@@ -130,7 +130,8 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			if(msg:match("[Ss][Tt][Oo][Cc][Kk][Aa]")
 				or msg:match("[Dd]eadmine")
 				or msg:match(" [Zz][Ff][%s%p]")
-				or msg:match("[Ff][Aa][Rr][Rr][Aa][Kk]")) then
+				or msg:match("[Ff][Aa][Rr][Rr][Aa][Kk]")
+				or msg:match("[Ff][Aa][Rr][Aa][Kk]")) then
 				badMSG = true
 				badMSGType = "LOW"
 				filteredCountLowLevel = filteredCountLowLevel + 1
@@ -145,13 +146,13 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				or msg:match("Я")
 				or msg:match("я")) then
 				badMSG = true
-				badMSGType = "MEME"
+				badMSGType = "LANGUAGE"
 				filteredCountMemes = filteredCountMemes + 1
 			end
 		end
 		if(spamBlockQuests) then
 			if(msg:match("Divination: Goref")
-				or msg:match("Wanted: ")
+				or msg:match("[Ww][Aa][Nn][Tt][Ee][Dd]: ")
 				or msg:match("Breaching the Path")
 				or msg:match("[Rr][Ii][Nn][Gg] [Oo][Ff] [Bb][Ll][Oo][Oo][Dd]")
 				or msg:match("Cipher of Damn")
@@ -177,7 +178,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		if(spamBlockRaids) then
 			if(msg:match("[Kk][Aa][Rr][Aa]") 
 					or msg:match("[Kk][Hh][Aa][Rr][Aa]")
-					or msg:match("[Nn][Ee][Tt][Hh][Ee][Rr]")
+					or msg:match("[Nn][Ee][Tt][Hh][Ee][Rr][Ss][Pp]")
 					or msg:match("[Gg][Rr][Uu][Uu][Ll]")
 					or msg:match("[Nn][Ii][Gg][Hh][Tt][Bb][Aa][Nn][Ee]")
 					or msg:match("SSC")) then
@@ -196,6 +197,9 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 					or msg:match("[Ll]eatherwork")
 					or msg:match("[Ee]nchant")
 					or msg:match("[Ee]chant")
+					or msg:match(" [Cc]raft")
+					or msg:match("[%W]*[Bb]uy[%W]*")
+					or msg:match("[Bb]uying")
 					or msg:match("[Cc]hant[%s%p]")
 					or msg:match("[Tt]ransmute")
 					or msg:match("[Aa]lch")
@@ -221,6 +225,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				or msg:match("%([Nn]orm%)")
 				or msg:match(" [Nn][Mm]")
 				or msg:match("[Rr][Ee][Pp] [Ff][Aa][Rr][Mm]")
+				or msg:match("[Rr][Ee][Pp] [Rr][Uu][Nn]")
 				or msg:match(" [Nn][%p%s$]")
 				or msg:match(" N ")) then
 				badMSG = true
@@ -245,6 +250,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		if(spamBlockGuild) then
 			if(msg:match("[Gg][Uu][Ii][Ll][Dd]") 
 					or msg:match("[Rr][Ee][Cc][Rr][Uu][Ii][Tt]")
+					or msg:match("[Rr][Ee][Cc][Rr][Uu][Tt]")
 					or msg:match("[Rr][Ee][Cc][Ll][Uu][Tt]")) then
 				badMSG = true
 				badMSGType = "GUILD"
