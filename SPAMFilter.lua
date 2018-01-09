@@ -264,7 +264,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		if (badMSG) then
 			filteredMessageCount = filteredMessageCount + 1
 			if (verbose) then
-				DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r "..cRed..badMSGType.."|r SPAM ".. msg)
+				DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r "..cRed..badMSGType.."|r ".. msg)
 			end
 			if(GetTime() - lastSpamTime >= minSecondsBetweenSpam) then
 				DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r Blocked "..cRed..filteredMessageCount.."|r SPAM messages so far this session...")
