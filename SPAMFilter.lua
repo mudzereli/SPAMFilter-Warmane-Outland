@@ -133,8 +133,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 					or msg:match("[Aa]rena")
 					or msg:match("10[%s]*[Gg][Aa][Mm][Ee]")
 					or msg:match("[%W]+[Tt][Ee][Aa][Mm]")
-					or msg:match(" [235]'s")
-					or msg:match(" [235]s")
+					or msg:match(" [235][']*[Ss]")
 					or msg:match("[Pp][Rr][Ee][Mm][Aa][Dd][Ee]")) then
 				badMSG = true
 				badMSGType = "PVP"
