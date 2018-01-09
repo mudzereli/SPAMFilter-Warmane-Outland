@@ -116,7 +116,6 @@ end
 
 -- FUNCTION: SpamFilter: does the work of filtering chat events
 local function SpamFilter(msg, player, channelstring, target, ...)
-	DEFAULT_CHAT_FRAME:AddMessage(channelstring);
 	local badMSG = false
 	local badMSGType = nil
 	if (filterSPAM) then 
@@ -124,27 +123,40 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			return true
 		end
 		if(spamBlockPVP) then
-			if(msg:match("[235][VvXx][235]") 
-					or msg:match("[235][Vv][Ss][235]")
-					or msg:match("[235][Oo][Nn][235]")
-					or msg:match("[235] [Oo][Nn] [235]")
-					or msg:match("[235] [Vv][Ss] [235]")
-					or msg:match("[235] [Vv] [235]")
-					or msg:match("[Aa]rena")
-					or msg:match("10[%s]*[Gg][Aa][Mm][Ee]")
-					or msg:match("[%W]+[Tt][Ee][Aa][Mm]")
-					or msg:match(" [235][']*[Ss]")
-					or msg:match("[Pp][Rr][Ee][Mm][Aa][Dd][Ee]")) then
+			if(msg:match("^[235]%s*[VvNnOoXxSsNn]+%s*[235]%W+")
+					or msg:match("%W+[235]%s*[VvNnOoXxSsNn]+%s*[235]%W+")
+					or msg:match("%W+[235]%s*[VvNnOoXxSsNn]+%s*[235]$")
+					or msg:match("^[235][']*[Ss]%W+")
+					or msg:match("%W+[235][']*[Ss]%W+")
+					or msg:match("%W+[235][']*[Ss]$")
+					or msg:match("^[Pp][Rr][Ee][Mm][Aa][Dd][Ee]%W+")
+					or msg:match("%W+[Pp][Rr][Ee][Mm][Aa][Dd][Ee]%W+")
+					or msg:match("%W+[Pp][Rr][Ee][Mm][Aa][Dd][Ee]$")
+					or msg:match("^[Aa][Rr][Ee][Nn][Aa]%W+")
+					or msg:match("%W+[Aa][Rr][Ee][Nn][Aa]%W+")
+					or msg:match("%W+[Aa][Rr][Ee][Nn][Aa]$")
+					or msg:match("^[Tt][Ee][Aa][Mm]%W+")
+					or msg:match("%W+[Tt][Ee][Aa][Mm]%W+")
+					or msg:match("%W+[Tt][Ee][Aa][Mm]$")
+					or msg:match("10%s*[Gg][Aa][Mm][Ee][Ss]*%W+")
+					or msg:match("10%s*[Gg][Aa][Mm][Ee][Ss]*$")) then
 				badMSG = true
 				badMSGType = "PVP"
 				filteredCountPVP = filteredCountPVP + 1
 			end
 		end
 		if(spamBlockLowLevel) then
-			if(msg:match("[Ss][Tt][Oo][Cc][Kk][Aa]")
-				or msg:match("[Dd][Ee][Aa][Dd][Mm][Ii][Nn]")
-				or msg:match("[%W]+[Zz][Ff][%W]+")
-				or msg:match("[%W]+[Ss][Tt][%W]+")
+			if(msg:match("^[Ss][Tt][Oo][Cc][Kk]")
+				or msg:match("%W+[Ss][Tt][Oo][Cc][Kk]")
+				or msg:match("^[Dd][Ee][Aa][Dd][Mm][Ii][Nn]")
+				or msg:match("%W+[Dd][Ee][Aa][Dd][Mm][Ii][Nn]")
+				or msg:match("^[Zz][Ff]%W+")
+				or msg:match("^[Zz][Ff]%W+")
+				or msg:match("%W+[Zz][Ff]%W+")
+				or msg:match("%W+[Zz][Ff]$")
+				or msg:match("^[Ss][Tt]%W+")
+				or msg:match("%W+[Ss][Tt]%W+")
+				or msg:match("%W+[Ss][Tt]$")
 				or msg:match("[Ff][Aa][Rr][Rr]*[Aa][Kk]")) then
 				badMSG = true
 				badMSGType = "LOW"
@@ -152,7 +164,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			end
 		end
 		if(spamBlockLanguage) then
-			if(msg:match("[Aa][Nn][Aa][Ll] ")
+			if(msg:match("[Aa][Nn][Aa][Ll]%s+")
 				or msg:match("[ИиДдЯяωѡѠƜШᥕϢᘺաɰպɯЩաшᶭщ౻ᵚயധÄäÖöÜüß]")) then
 				badMSG = true
 				badMSGType = "LANGUAGE"
@@ -161,14 +173,14 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		end
 		if(spamBlockQuests) then
 			if(msg:match("Divination: Goref")
-				or msg:match("[Ww][Aa][Nn][Tt][Ee][Dd][%W]+")
+				or msg:match("[Ww][Aa][Nn][Tt][Ee][Dd]%W+")
 				or msg:match("Breaching the Path")
-				or msg:match("[Rr][Ii][Nn][Gg] [Oo][Ff] [Bb][Ll][Oo][Oo][Dd]")
+				or msg:match("[Rr][Ii][Nn][Gg]%s+[Oo][Ff]%s+[Bb][Ll][Oo][Oo][Dd]")
 				or msg:match("Cipher of Damn")
 				or msg:match("Dimensius the All%-Devouring")
 				or msg:match("Battle of the Crimson Watch")
 				or msg:match("Gurok the Usurper")
-				or msg:match("Trial of the Naaru")
+				or msg:match("[Tt][Rr][Ii][Aa][Ll]%s+[Oo][Ff][Tt]?[Hh]?[Ee]?%s*[Nn][Aa][Aa][Rr][Uu]")
 				or msg:match("Zuluhead the Whacked")
 				or msg:match("Deathblow to the Legion")) then
 				badMSG = true
@@ -177,12 +189,18 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			end
 		end
 		if(spamBlockRaids) then
-			if(msg:match("[Kk][Aa][Rr][Aa]") 
-					or msg:match("[Kk][Hh][Aa][Rr][Aa]")
-					or msg:match("[Nn][Ee][Tt][Hh][Ee][Rr][Ss][Pp]")
-					or msg:match("[Gg][Rr][Uu][Uu][Ll]")
-					or msg:match("[Nn][Ii][Gg][Hh][Tt][Bb][Aa][Nn][Ee]")
-					or msg:match("SSC")) then
+			if(msg:match("^[Kk][Hh]*[Aa][Rr][Aa]%W+")
+				or msg:match("%W+[Kk][Hh]*[Aa][Rr][Aa]*%W+")
+				or msg:match("%W+[Kk][Hh]*[Aa][Rr][Aa]*$")
+				or msg:match("^[Kk][Zz]%W+")
+				or msg:match("%W+[Kk][Zz]*%W+")
+				or msg:match("%W+[Kk][Zz]*$")
+				or msg:match("^[Ss][Ss][Cc]%W+")
+				or msg:match("%W+[Ss][Ss][Cc]*%W+")
+				or msg:match("%W+[Ss][Ss][Cc]*$")
+				or msg:match("[Nn][Ee][Tt][Hh][Ee][Rr][Ss][Pp]")
+				or msg:match("[Gg][Rr][Uu][Uu][Ll]")
+				or msg:match("[Nn][Ii][Gg][Hh][Tt][Bb][Aa][Nn][Ee]")) then
 				badMSG = true
 				badMSGType = "RAID"
 				filteredCountRaids = filteredCountRaids + 1
@@ -190,10 +208,9 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		end
 		if(spamBlockTrade) then
 			if(msg:match("[Ll][Ff][Ww]") 
-					or msg:match("[Ww][Tt][TtSsBb]")
-					or msg:match("[Ww] [Tt] [TtSsBb]")
+					or msg:match("[Ww]%s*[Tt]%s*[TtSsBb]")
 					or msg:match("[Mm]arket")
-					or msg:match(" [Cc][Oo][Ii][Nn]")
+					or msg:match("%A+[Cc][Oo][Ii][Nn]")
 					or msg:match("[Ll]ockbox")
 					or msg:match("[Ll]eatherwork")
 					or msg:match("[%W]+[Jj]ewelcraft")
@@ -220,42 +237,27 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			end
 		end
 		if(spamBlockNormals) then
-			if(msg:match("[Nn]orm")
-				or msg:match("[Nn]oramal")
-				or msg:match("[Nn][Oo][Rr][Aa]*[Mm][Aa]*[Ll]*")
-				or msg:match("%([Nn]%)")
-				or msg:match("%([Nn][Mm]%)")
-				or msg:match("%([Nn]ormal%)")
-				or msg:match("%([Nn]orm%)")
-				or msg:match(" [Nn][Mm]")
-				or msg:match("[Rr][Ee][Pp] [Ff][Aa][Rr][Mm]")
-				or msg:match("[Rr][Ee][Pp] [Rr][Uu][Nn]")
-				or msg:match(" [Nn][%W]")
-				or msg:match(" N ")) then
+			if(msg:match("^[Nn][Oo]*[Rr]*[Mm]*[Aa]*[Ll]*%W+")
+				or msg:match("%W+[Nn][Oo]*[Rr]*[Mm]*[Aa]*[Ll]*%W+")
+				or msg:match("%W+[Nn][Oo]*[Rr]*[Mm]*[Aa]*[Ll]*$")
+				or msg:match("[Rr][Ee][Pp] [FfRr][AaUu][RrNn]")) then
 				badMSG = true
 				badMSGType = "NORMAL"
 				filteredCountNormals = filteredCountNormals + 1
 			end
 		end
 		if(spamBlockHeroics) then
-			if(msg:match("%([Hh]%)") 
-					or msg:match("%([Hh][Cc]%)")
-					or msg:match("%([Hh][Ee][Rr][Oo][Ii][Cc]%)")
-					or msg:match(" [Hh][Cc]")
-					or msg:match(" [Hh][%W]")
-					or msg:match(" H ")
-					or msg:match(" [Hh][Ee][Rr][Oo]")
-					or msg:match(" [Hh][Ee][Rr][Oo][Ii][Cc]")) then
+			if(msg:match("^[Hh][Ee]*[Rr]*[Oo]*[Ii]*[Cc]*%W+")
+				or msg:match("%W+[Hh][Ee]*[Rr]*[Oo]*[Ii]*[Cc]*%W+")
+				or msg:match("%W+[Hh][Ee]*[Rr]*[Oo]*[Ii]*[Cc]*$")) then
 				badMSG = true
 				badMSGType = "HEROIC"
 				filteredCountHeroics = filteredCountHeroics + 1
 			end
 		end
 		if(spamBlockGuild) then
-			if(msg:match("[Gg][Uu][Ii][Ll][Dd]") 
-					or msg:match("[Rr][Ee][Cc][Rr][Uu][Ii][Tt]")
-					or msg:match("[Rr][Ee][Cc][Rr][Uu][Tt]")
-					or msg:match("[Rr][Ee][Cc][Ll][Uu][Tt]")) then
+			if(msg:match("[Gg][Uu]*[Ii][Ll][Dd]") 
+					or msg:match("[Rr][Ee][Cc][RrLl][Uu][IiTt][Tt]*")) then
 				badMSG = true
 				badMSGType = "GUILD"
 				filteredCountGuild = filteredCountGuild + 1
