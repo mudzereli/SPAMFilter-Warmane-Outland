@@ -4,6 +4,11 @@ This is a heavily modified and extremely aggressive version of [DarkSpy's SPAMfi
 ### Usage
 When in game, type `/sf` to see a list of settings and filters
 
+### Installation
+1. Download the Addon: https://github.com/mudzereli/SPAMFilter-Warmane-Outland/archive/master.zip
+2. Unzip to your `<world of warcraft>/interface/addons` folder
+
+
 ### In-Game Examples
 
 **`/sf` Command:**
