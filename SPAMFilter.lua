@@ -1,9 +1,9 @@
 -- SPAMFilter v2.0 by Darkspy - upgraded by mudzereli for Warmane
 
-filteredMessageCount = 0
 lastSpamTime = GetTime()
 lastBlockedMSG = ""
 minSecondsBetweenSpam = 90
+filteredMessageCount = 0
 filteredCountPVP = 0
 filteredCountTrade = 0
 filteredCountGuild = 0
@@ -78,21 +78,34 @@ SlashCmdList["SPAMFILTER"] = function(msg)
 		verbose = not verbose
 		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r ".. msg:upper() .." SPAM filtering "..EnabledBoolean(verbose))
 	elseif msg == "blocked" or msg == "block" or msg == "b" then
-		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r Blocked "..cRed..filteredMessageCount.."|r SPAM messages so far this session...")
+		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r Blocked "..cRed..filteredMessageCount.."|r SPAM messages so far this session.")
+	elseif msg == "clear" or msg == "clr" or msg == "c" then
+		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r Cleared "..cRed..filteredMessageCount.."|r blocked SPAM messages.")
+		filteredMessageCount = 0
+		filteredCountPVP = 0
+		filteredCountTrade = 0
+		filteredCountGuild = 0
+		filteredCountRaids = 0
+		filteredCountHeroics = 0
+		filteredCountQuests = 0
+		filteredCountMemes = 0
+		filteredCountLowLevel = 0
+		filteredCountNormals = 0
 	else
 		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r List of commands")
 		DEFAULT_CHAT_FRAME:AddMessage("("..cRed..filteredMessageCount.."|r) |r"..cOrange.."/sf blocked|r:               Show total # of blocked messages|r")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(filterSPAM).."] |r"..cOrange.."/sf toggle|r:         toggle entire SPAM filtering engine ON/OFF.")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(verbose).."] |r"..cOrange.."/sf verbose|r:     toggle displaying of filtered messages.")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockMemes).."] "..cOrange.."/sf lang|r:       toggle LANGUAGE filtering. ("..cRed..filteredCountMemes.."|r)")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockPVP).."] "..cOrange.."/sf pvp|r:         toggle PVP filtering. ("..cRed..filteredCountPVP.."|r)")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockTrade).."] "..cOrange.."/sf trade|r:      toggle TRADE filtering. ("..cRed..filteredCountTrade.."|r)")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockGuild).."] "..cOrange.."/sf guild|r:       toggle GUILD filtering. ("..cRed..filteredCountGuild.."|r)")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockRaids).."] "..cOrange.."/sf raid|r:         toggle RAID filtering. ("..cRed..filteredCountRaids.."|r)")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockNormals).."] "..cOrange.."/sf normal|r:    toggle NORMAL DNG filtering. ("..cRed..filteredCountNormals.."|r)")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockHeroics).."] "..cOrange.."/sf heroic|r:     toggle HEROIC DNG filtering. ("..cRed..filteredCountHeroics.."|r)")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockQuests).."] "..cOrange.."/sf quest|r:      toggle QUEST filtering. ("..cRed..filteredCountQuests.."|r)")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockLowLevel).."] "..cOrange.."/sf low|r:          toggle LOW LEVEL filtering. ("..cRed..filteredCountLowLevel.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("("..cRed..filteredMessageCount.."|r) |r"..cOrange.."/sf clear|r:                    Clear blocked message count.")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(filterSPAM).."] |r"..cOrange.."/sf toggle|r:         Toggle entire SPAM filtering engine ON/OFF.")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(verbose).."] |r"..cOrange.."/sf verbose|r:     Toggle displaying of filtered messages.")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockMemes).."] "..cOrange.."/sf lang|r:       Toggle LANGUAGE filtering. ("..cRed..filteredCountMemes.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockPVP).."] "..cOrange.."/sf pvp|r:         Toggle PVP filtering. ("..cRed..filteredCountPVP.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockTrade).."] "..cOrange.."/sf trade|r:      Toggle TRADE filtering. ("..cRed..filteredCountTrade.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockGuild).."] "..cOrange.."/sf guild|r:       Toggle GUILD filtering. ("..cRed..filteredCountGuild.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockRaids).."] "..cOrange.."/sf raid|r:         Toggle RAID filtering. ("..cRed..filteredCountRaids.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockNormals).."] "..cOrange.."/sf normal|r:    Toggle NORMAL DNG filtering. ("..cRed..filteredCountNormals.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockHeroics).."] "..cOrange.."/sf heroic|r:     Toggle HEROIC DNG filtering. ("..cRed..filteredCountHeroics.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockQuests).."] "..cOrange.."/sf quest|r:      Toggle QUEST filtering. ("..cRed..filteredCountQuests.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockLowLevel).."] "..cOrange.."/sf low|r:          Toggle LOW LEVEL filtering. ("..cRed..filteredCountLowLevel.."|r)")
 	end
 end
 
@@ -118,6 +131,8 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 					or msg:match("[235] [Vv][Ss] [235]")
 					or msg:match("[235] [Vv] [235]")
 					or msg:match("[Aa]rena")
+					or msg:match("10[%s]*[Gg][Aa][Mm][Ee]")
+					or msg:match("[%W]+[Tt][Ee][Aa][Mm]")
 					or msg:match(" [235]'s")
 					or msg:match(" [235]s")
 					or msg:match("[Pp][Rr][Ee][Mm][Aa][Dd][Ee]")) then
@@ -129,7 +144,8 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		if(spamBlockLowLevel) then
 			if(msg:match("[Ss][Tt][Oo][Cc][Kk][Aa]")
 				or msg:match("[Dd]eadmine")
-				or msg:match(" [Zz][Ff][%s%p]")
+				or msg:match(" [Zz][Ff][%W]+")
+				or msg:match(" [Ss][Tt][%W]+")
 				or msg:match("[Ff][Aa][Rr][Rr][Aa][Kk]")
 				or msg:match("[Ff][Aa][Rr][Aa][Kk]")) then
 				badMSG = true
@@ -175,22 +191,13 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				or msg:match("[Rr][Ii][Nn][Gg] [Oo][Ff] [Bb][Ll][Oo][Oo][Dd]")
 				or msg:match("Cipher of Damn")
 				or msg:match("Dimensius the All%-Devouring")
+				or msg:match("Battle of the Crimson Watch")
+				or msg:match("Gurok the Usurper")
 				or msg:match("Zuluhead the Whacked")
 				or msg:match("Deathblow to the Legion")) then
 				badMSG = true
 				badMSGType = "QUEST"
 				filteredCountQuests = filteredCountQuests + 1
-			end
-		end
-		if(spamBlockPVP) then
-			if(msg:match("[235][vx][235]") 
-					or msg:match("[Aa]rena")
-					or msg:match(" [235]'[Ss]")
-					or msg:match(" [235][Ss]")
-					or msg:match("[Pp][Rr][Ee][Mm][Aa][Dd][Ee]")) then
-				badMSG = true
-				badMSGType = "PVP"
-				filteredCountPVP = filteredCountPVP + 1
 			end
 		end
 		if(spamBlockRaids) then
@@ -213,21 +220,23 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 					or msg:match(" [Cc][Oo][Ii][Nn]")
 					or msg:match("[Ll]ockbox")
 					or msg:match("[Ll]eatherwork")
+					or msg:match("[%W]+[Jj]ewelcraft")
 					or msg:match("[Ee]nchant")
 					or msg:match("[Ee]chant")
 					or msg:match(" [Cc]raft")
-					or msg:match("[%W]*[Bb]uy[%W]*")
+					or msg:match("[%W]+[Bb]uy[%W]*")
 					or msg:match("[Bb]uying")
 					or msg:match("[Cc]hant[%s%p]")
 					or msg:match("[Tt]ransmute")
 					or msg:match("[Aa]lch")
 					or msg:match("[Bb][Ll][Aa][Cc][Kk][Ss][Mm][Ii]")
 					or msg:match("[Tt]ailor")
-					or msg:match("[Ll][Ff] [Bb][Ss] ")
-					or msg:match("[Ll][Ff] [Jj][Cc] ")
-					or msg:match("[Ll][Ff] [Ee][Nn][Cc][Hh]")
-					or msg:match("[Ll][Ff] [Ee][Nn][Gg] ")
-					or msg:match("[Ll][Ff] [Ee][Nn][Gg][Ii]")
+					or msg:match("[Ll][Ff] [Bb][Ss][%W]+")
+					or msg:match("[Ll][Ff] [Jj][Cc][%W]+")
+					or msg:match("[Ll][Ff] [Ll][Ww][%W]+")
+					or msg:match("[Ll][Ff] [Ee][Nn][Cc][Hh][%W]+")
+					or msg:match("[Ll][Ff] [Ee][Nn][Gg][%W]+")
+					or msg:match("[Ll][Ff] [Ee][Nn][Gg][Ii][%W]+")
 					or msg:match("[Ss]ell")) then
 				badMSG = true
 				badMSGType = "TRADE"

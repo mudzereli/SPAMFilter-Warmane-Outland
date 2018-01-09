@@ -1,5 +1,5 @@
 ## SPAMfilter Addon
-This is a heavily modified version of [DarkSpy's SPAMfilter addon](https://legacy-wow.com/tbc-addons/spamfilter/) that's tailored to the private [Warmane - Outland](https://www.warmane.com/) private WoW server.
+This is a heavily modified and extremely aggressive version of [DarkSpy's SPAMfilter addon](https://legacy-wow.com/tbc-addons/spamfilter/) that's tailored to the private [Warmane - Outland](https://www.warmane.com/) private WoW server.
 
 ### Usage
 When in game, type `/sf` to see a list of settings and filters
