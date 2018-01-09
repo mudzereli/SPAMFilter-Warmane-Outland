@@ -123,9 +123,9 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			return true
 		end
 		if(spamBlockPVP) then
-			if(msg:match("^[235]%s*[VvNnOoXxSsNn]+%s*[235]%W+")
-					or msg:match("%W+[235]%s*[VvNnOoXxSsNn]+%s*[235]%W+")
-					or msg:match("%W+[235]%s*[VvNnOoXxSsNn]+%s*[235]$")
+			if(msg:match("^[235]%s*[VvNnOoXxSsNnCc]+%s*[235]%W+")
+					or msg:match("%W+[235]%s*[VvNnOoXxSsNnCc]+%s*[235]%W+")
+					or msg:match("%W+[235]%s*[VvNnOoXxSsNnCc]+%s*[235]$")
 					or msg:match("^[235][']*[Ss]%W+")
 					or msg:match("%W+[235][']*[Ss]%W+")
 					or msg:match("%W+[235][']*[Ss]$")
