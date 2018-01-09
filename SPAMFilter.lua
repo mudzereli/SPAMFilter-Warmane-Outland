@@ -143,11 +143,10 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		end
 		if(spamBlockLowLevel) then
 			if(msg:match("[Ss][Tt][Oo][Cc][Kk][Aa]")
-				or msg:match("[Dd]eadmine")
-				or msg:match(" [Zz][Ff][%W]+")
-				or msg:match(" [Ss][Tt][%W]+")
-				or msg:match("[Ff][Aa][Rr][Rr][Aa][Kk]")
-				or msg:match("[Ff][Aa][Rr][Aa][Kk]")) then
+				or msg:match("[Dd][Ee][Aa][Dd][Mm][Ii][Nn]")
+				or msg:match("[%W]+[Zz][Ff][%W]+")
+				or msg:match("[%W]+[Ss][Tt][%W]+")
+				or msg:match("[Ff][Aa][Rr][Rr]*[Aa][Kk]")) then
 				badMSG = true
 				badMSGType = "LOW"
 				filteredCountLowLevel = filteredCountLowLevel + 1
@@ -186,7 +185,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		end
 		if(spamBlockQuests) then
 			if(msg:match("Divination: Goref")
-				or msg:match("[Ww][Aa][Nn][Tt][Ee][Dd]: ")
+				or msg:match("[Ww][Aa][Nn][Tt][Ee][Dd][%W]+")
 				or msg:match("Breaching the Path")
 				or msg:match("[Rr][Ii][Nn][Gg] [Oo][Ff] [Bb][Ll][Oo][Oo][Dd]")
 				or msg:match("Cipher of Damn")
