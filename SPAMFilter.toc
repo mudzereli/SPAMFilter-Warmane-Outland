@@ -1,9 +1,9 @@
 ## Interface: 20400
 
 ## Title: SPAMFilter
-## Author: Darkspy
-## Version: 1.0
-## Notes: Filter gold spammers and account sellers
-## SavedVariables: filterSPAM verbose userKeywords
+## Author: Darkspy & mudzereli
+## Version: 2.0
+## Notes: Filter various amounts of SPAM
+## SavedVariables: filterSPAM spamBlockPVP spamBlockTrade spamBlockGuild spamBlockRaids spamBlockHeroics spamBlockQuests spamBlockMemes spamBlockLowLevel spamBlockNormals verbose
 
 SPAMFilter.lua
