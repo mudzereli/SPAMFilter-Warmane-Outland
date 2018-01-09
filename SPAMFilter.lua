@@ -144,7 +144,25 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				or msg:match("Д")
 				or msg:match("д")
 				or msg:match("Я")
-				or msg:match("я")) then
+				or msg:match("я")
+				or msg:match("ω")
+				or msg:match("ѡ")
+				or msg:match("Ѡ")
+				or msg:match("Ɯ")
+				or msg:match("Ш")
+				or msg:match("ᥕ")
+				or msg:match("Ϣ")
+				or msg:match("ᘺ")
+				or msg:match("ա")
+				or msg:match("ய")
+				or msg:match("ധ")
+				or msg:match("Ä")
+				or msg:match("ä")
+				or msg:match("Ö")
+				or msg:match("ö")
+				or msg:match("Ü")
+				or msg:match("ü")
+				or msg:match("ß")) then
 				badMSG = true
 				badMSGType = "LANGUAGE"
 				filteredCountMemes = filteredCountMemes + 1
@@ -219,6 +237,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		if(spamBlockNormals) then
 			if(msg:match("[Nn]orm")
 				or msg:match("[Nn]oramal")
+				or msg:match("[Nn][Oo][Rr][Aa]*[Mm][Aa]*[Ll]*")
 				or msg:match("%([Nn]%)")
 				or msg:match("%([Nn][Mm]%)")
 				or msg:match("%([Nn]ormal%)")
@@ -226,7 +245,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				or msg:match(" [Nn][Mm]")
 				or msg:match("[Rr][Ee][Pp] [Ff][Aa][Rr][Mm]")
 				or msg:match("[Rr][Ee][Pp] [Rr][Uu][Nn]")
-				or msg:match(" [Nn][%p%s$]")
+				or msg:match(" [Nn][%W]")
 				or msg:match(" N ")) then
 				badMSG = true
 				badMSGType = "NORMAL"
@@ -238,7 +257,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 					or msg:match("%([Hh][Cc]%)")
 					or msg:match("%([Hh][Ee][Rr][Oo][Ii][Cc]%)")
 					or msg:match(" [Hh][Cc]")
-					or msg:match(" [Hh][%p%s$]")
+					or msg:match(" [Hh][%W]")
 					or msg:match(" H ")
 					or msg:match(" [Hh][Ee][Rr][Oo]")
 					or msg:match(" [Hh][Ee][Rr][Oo][Ii][Cc]")) then
