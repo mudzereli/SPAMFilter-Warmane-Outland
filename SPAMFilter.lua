@@ -20,14 +20,14 @@ cOrange = "|cfff39c12"
 
 -- SAVED VARIABLES: these variables are defined in toc as SavedVariables and persist between sessions
 filterSPAM = true
-spamBlockPVP = false
+spamBlockPVP = true
 spamBlockTrade = false
-spamBlockGuild = false
+spamBlockGuild = true
 spamBlockRaids = false
 spamBlockHeroics = false
-spamBlockQuests = false
-spamBlockMemes = true
-spamBlockLowLevel = false
+spamBlockQuests = true
+spamBlockLanguage = true
+spamBlockLowLevel = true
 spamBlockNormals = false
 verbose = false
 
@@ -63,8 +63,8 @@ SlashCmdList["SPAMFILTER"] = function(msg)
 		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r ".. msg:upper() .." SPAM filtering "..EnabledBoolean(spamBlockQuests))
 	elseif msg == "lang" or msg == "lng" or msg == "lg" then
 		msg = "lang"
-		spamBlockMemes = not spamBlockMemes
-		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r ".. msg:upper() .." SPAM filtering "..EnabledBoolean(spamBlockMemes))
+		spamBlockLanguage = not spamBlockLanguage
+		DEFAULT_CHAT_FRAME:AddMessage(cGreen.."SPAM Filter:|r ".. msg:upper() .." SPAM filtering "..EnabledBoolean(spamBlockLanguage))
 	elseif msg == "low" or msg == "l" then
 		msg = "low"
 		spamBlockLowLevel = not spamBlockLowLevel
@@ -97,7 +97,7 @@ SlashCmdList["SPAMFILTER"] = function(msg)
 		DEFAULT_CHAT_FRAME:AddMessage("("..cRed..filteredMessageCount.."|r) |r"..cOrange.."/sf clear|r:                    Clear blocked message count.")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(filterSPAM).."] |r"..cOrange.."/sf toggle|r:         Toggle entire SPAM filtering engine ON/OFF.")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(verbose).."] |r"..cOrange.."/sf verbose|r:     Toggle displaying of filtered messages.")
-		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockMemes).."] "..cOrange.."/sf lang|r:       Toggle LANGUAGE filtering. ("..cRed..filteredCountMemes.."|r)")
+		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockLanguage).."] "..cOrange.."/sf lang|r:       Toggle LANGUAGE filtering. ("..cRed..filteredCountMemes.."|r)")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockPVP).."] "..cOrange.."/sf pvp|r:         Toggle PVP filtering. ("..cRed..filteredCountPVP.."|r)")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockTrade).."] "..cOrange.."/sf trade|r:      Toggle TRADE filtering. ("..cRed..filteredCountTrade.."|r)")
 		DEFAULT_CHAT_FRAME:AddMessage("["..EnabledBoolean(spamBlockGuild).."] "..cOrange.."/sf guild|r:       Toggle GUILD filtering. ("..cRed..filteredCountGuild.."|r)")
@@ -151,7 +151,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				filteredCountLowLevel = filteredCountLowLevel + 1
 			end
 		end
-		if(spamBlockMemes) then
+		if(spamBlockLanguage) then
 			if(msg:match("[Aa][Nn][Aa][Ll] ")
 				or msg:match("[ИиДдЯяωѡѠƜШᥕϢᘺաɰպɯЩաшᶭщ౻ᵚயധÄäÖöÜüß]")) then
 				badMSG = true

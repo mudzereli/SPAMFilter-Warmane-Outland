@@ -4,6 +4,6 @@
 ## Author: Darkspy & mudzereli
 ## Version: 2.0
 ## Notes: Filter various amounts of SPAM
-## SavedVariables: filterSPAM spamBlockPVP spamBlockTrade spamBlockGuild spamBlockRaids spamBlockHeroics spamBlockQuests spamBlockMemes spamBlockLowLevel spamBlockNormals verbose
+## SavedVariables: filterSPAM spamBlockPVP spamBlockTrade spamBlockGuild spamBlockRaids spamBlockHeroics spamBlockQuests spamBlockLanguage spamBlockLowLevel spamBlockNormals verbose
 
 SPAMFilter.lua
