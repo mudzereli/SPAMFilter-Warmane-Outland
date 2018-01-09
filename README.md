@@ -8,16 +8,12 @@ When in game, type `/sf` to see a list of settings and filters
 
 **`/sf` Command:**
 
-![/sf command](https://i.imgur.com/JsQA94j.png)
+![/sf command](https://i.imgur.com/Vj05RJl.png)
 
-**Unfiltered Chat:**
+**Tagged & Unfiltered Chat (except for Normal Dungeons in this example):**
 
-![unfiltered chat](https://i.imgur.com/2GsCiwd.png)
+![unfiltered chat](https://i.imgur.com/AQgDJdW.png)
 
-**Filtered Chat (Example shows turning on all filters except Heroic Dungeons):**
+**Cleaned Filtered Chat (except for Normal Dungeons in this example):**
 
-![filtered](https://i.imgur.com/N3ZpmFx.png)
-
-**Verbose Filtered Chat:**
-
-![verbose filtered](https://i.imgur.com/N9URVL1.png)
+![filtered](https://i.imgur.com/o6e7QOH.png)
