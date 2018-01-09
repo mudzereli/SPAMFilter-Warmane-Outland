@@ -189,15 +189,16 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			end
 		end
 		if(spamBlockRaids) then
-			if(msg:match("^[Kk][Hh]*[Aa][Rr][Aa][Zz]?[AaHH]*[Nn]?%W+")
-				or msg:match("%W+[Kk][Hh]*[Aa][Rr][Aa][Zz]?[AaHH]*[Nn]?%W+")
-				or msg:match("%W+[Kk][Hh]*[Aa][Rr][Aa][Zz]?[AaHH]*[Nn]?$")
+			if(msg:match("^[Kk][Hh]*[Aa][Rr][Aa][Zz]?[AaHh]*[Nn]?%W+")
+				or msg:match("%W+[Kk][Hh]*[Aa][Rr][Aa][Zz]?[AaHh]*[Nn]?%W+")
+				or msg:match("%W+[Kk][Hh]*[Aa][Rr][Aa][Zz]?[AaHh]*[Nn]?$")
 				or msg:match("^[Kk][Zz]%W+")
 				or msg:match("%W+[Kk][Zz]*%W+")
 				or msg:match("%W+[Kk][Zz]*$")
 				or msg:match("^[Ss][Ss][Cc]%W+")
 				or msg:match("%W+[Ss][Ss][Cc]*%W+")
 				or msg:match("%W+[Ss][Ss][Cc]*$")
+				or msg:match("[Mm][Aa][Gg][Th][Ee][Rr]")
 				or msg:match("[Nn][Ee][Tt][Hh][Ee][Rr][Ss][Pp]")
 				or msg:match("[Gg][Rr][Uu][Uu][Ll]")
 				or msg:match("[Nn][Ii][Gg][Hh][Tt][Bb][Aa][Nn][Ee]")) then
@@ -238,9 +239,9 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			end
 		end
 		if(spamBlockNormals) then
-			if(msg:match("^[Nn][Oo]*[Rr]*[Mm]*[Aa]*[Ll]*%W+")
-				or msg:match("%W+[Nn][Oo]*[Rr]*[Mm]*[Aa]*[Ll]*%W+")
-				or msg:match("%W+[Nn][Oo]*[Rr]*[Mm]*[Aa]*[Ll]*$")
+			if(msg:match("^[Nn][Oo]?[Rr]?[Mm]?[Aa]?[Ll]?%s+")
+				or msg:match("[%s%(]+[Nn][Oo]?[Rr]?[Mm]?[Aa]?[Ll]?[%s%)]+")
+				or msg:match("%s+[Nn][Oo]?[Rr]?[Mm]?[Aa]?[Ll]?$")
 				or msg:match("[Rr][Ee][Pp] [FfRr][AaUu][RrNn]")) then
 				badMSG = true
 				badMSGType = "NORMAL"
@@ -248,9 +249,9 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 			end
 		end
 		if(spamBlockHeroics) then
-			if(msg:match("^[Hh][Ee]*[Rr]*[Oo]*[Ii]*[Cc]*%W+")
-				or msg:match("%W+[Hh][Ee]*[Rr]*[Oo]*[Ii]*[Cc]*%W+")
-				or msg:match("%W+[Hh][Ee]*[Rr]*[Oo]*[Ii]*[Cc]*$")) then
+			if(msg:match("^[Hh][Ee]?[Rr]?[Oo]?[Ii]?[Cc]?%s+")
+				or msg:match("[%s%(]+[Hh][Ee]?[Rr]?[Oo]?[Ii]?[Cc]?[%s%)]+")
+				or msg:match("%s+[Hh][Ee]?[Rr]?[Oo]?[Ii]?[Cc]?$")) then
 				badMSG = true
 				badMSGType = "HEROIC"
 				filteredCountHeroics = filteredCountHeroics + 1
