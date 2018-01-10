@@ -183,7 +183,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 				or msg:match("Battle of the Crimson Watch")
 				or msg:match("Gurok the Usurper")
 				or msg:match("[Tt][Rr][Ii][Aa][Ll]%s+[Oo][Ff][Tt]?[Hh]?[Ee]?%s*[Nn][Aa][Aa][Rr][Uu]")
-				or msg:match("Zuluhead the Whacked")
+				or msg:match("Zuluhed the Whacked")
 				or msg:match("Breaking Down Netherrock")
 				or msg:match("Deathblow to the Legion")) then
 				badMSG = true
@@ -212,6 +212,9 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		end
 		if(spamBlockTrade) then
 			if(msg:match("[Ll][Ff][Ww]") 
+					or msg:match("^[Jj][Ww]?[Cc]%W+")
+					or msg:match("%W+[Jj][Ww]?[Cc]*%W+")
+					or msg:match("%W+[Jj][Ww]?[Cc]*$")
 					or msg:match("[Ww]%s*[Tt]%s*[TtSsBb]")
 					or msg:match("[Mm]arket")
 					or msg:match("%A+[Cc][Oo][Ii][Nn]")
@@ -227,7 +230,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 					or msg:match("[Tt]ransmute")
 					or msg:match("[Aa]lch")
 					or msg:match("[Bb][Ll][Aa][Cc][Kk][Ss][Mm][Ii]")
-					or msg:match("[Tt]ailor")
+					or msg:match("[Tt][Aa][Ii][Ll][Oo][Rr]")
 					or msg:match("[Ll][Ff] [Bb][Ss][%W]+")
 					or msg:match("[Ll][Ff] [Jj][Cc][%W]+")
 					or msg:match("[Ll][Ff] [Ll][Ww][%W]+")
@@ -252,7 +255,7 @@ local function SpamFilter(msg, player, channelstring, target, ...)
 		end
 		if(spamBlockHeroics) then
 			if(msg:match("^[Hh][Ee]?[Rr]?[Oo]?[Ii]?[Cc]?%s+")
-				or msg:match("[%s%(]+[Hh][Ee]?[Rr]?[Oo]?[Ii]?[Cc]?[%s%),]+")
+				or msg:match("[%s%(%-]+[Hh][Ee]?[Rr]?[Oo]?[Ii]?[Cc]?[%s%)%-,]+")
 				or msg:match("%s+[Hh][Ee]?[Rr]?[Oo]?[Ii]?[Cc]?$")) then
 				badMSG = true
 				badMSGType = "HEROIC"
